@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :publications
 
-  get 'reference/new', to: 'references#new', as: :new_reference
-  post 'reference/new', to: 'references#create', as: :create_reference
+  get 'references/new', to: 'references#new', as: :new_reference
+  post 'references/new', to: 'references#create', as: :create_reference
 
   root 'publications#index'
 
