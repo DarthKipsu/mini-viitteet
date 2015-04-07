@@ -52,6 +52,19 @@ ActiveRecord::Schema.define(version: 20150407135838) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "miscs", force: :cascade do |t|
+    t.string   "author"
+    t.string   "title"
+    t.string   "howpublished"
+    t.integer  "month"
+    t.integer  "year"
+    t.string   "note"
+    t.string   "key"
+    t.string   "bibtexkey"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "phdtheses", force: :cascade do |t|
     t.string   "author"
     t.string   "title"
@@ -81,9 +94,23 @@ ActiveRecord::Schema.define(version: 20150407135838) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "publication_miscs", force: :cascade do |t|
+    t.integer  "publication_id"
+    t.integer  "misc_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "publication_phdtheses", force: :cascade do |t|
     t.integer  "publication_id"
     t.integer  "phdthesis_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "publication_techreports", force: :cascade do |t|
+    t.integer  "publication_id"
+    t.integer  "techreport_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -99,6 +126,22 @@ ActiveRecord::Schema.define(version: 20150407135838) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "techreports", force: :cascade do |t|
+    t.string   "author"
+    t.string   "title"
+    t.string   "institution"
+    t.integer  "year"
+    t.string   "type"
+    t.string   "number"
+    t.string   "address"
+    t.integer  "month"
+    t.string   "note"
+    t.string   "key"
+    t.string   "bibtexkey"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "unpublisheds", force: :cascade do |t|
