@@ -1,9 +1,9 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @publication.name %>
 </p>
+
+<%= link_to 'add new reference', new_reference_path, class: 'btn btn-default' %> |
 
 <%= link_to 'Edit', edit_publication_path(@publication) %> |
 <%= link_to 'Back', publications_path %>
