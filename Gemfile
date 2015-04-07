@@ -7,6 +7,7 @@ ruby '2.2.0'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
 # Use SCSS for stylesheets
+gem 'bootstrap-sass', '~> 3.3.4'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -23,7 +24,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'bootstrap-sass', '~> 3.3.4'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -46,16 +46,21 @@ group :development, :test do
 
   # For test db
   gem 'sqlite3'
-  
+
   gem 'rspec-rails'
 end
 
 group :development do
   gem 'guard'
-  gem 'rails_layout'
 end
 
 group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+
+#bootstrap:
+gem 'twitter-bootswatch-rails', '~> 3.3'
+gem 'twitter-bootswatch-rails-fontawesome', '~> 4.3'
+gem 'therubyracer'
+gem 'twitter-bootswatch-rails-helpers'
