@@ -11,6 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150407121104) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "author"
+    t.string   "title"
+    t.string   "journal"
+    t.integer  "year"
+    t.string   "volume"
+    t.integer  "number"
+    t.string   "pages"
+    t.integer  "month"
+    t.string   "note"
+    t.string   "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "bibtexkey"
+  end
 
 end
