@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 20150407135838) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "inproceedings", force: :cascade do |t|
     t.string   "author"
     t.string   "title"
@@ -156,6 +157,8 @@ ActiveRecord::Schema.define(version: 20150407135838) do
     t.datetime "updated_at", null: false
   end
 
+=======
+>>>>>>> d09d4a1f61ccfb8ce8750648a06e0d19db6254d1
   create_table "miscs", force: :cascade do |t|
     t.string   "author"
     t.string   "title"
