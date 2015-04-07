@@ -52,6 +52,7 @@ end
 
 group :development do
   gem 'guard'
+  gem 'rails_layout'
 end
 
 group :production do

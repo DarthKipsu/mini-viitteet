@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :publications
 
+  get 'reference/new', to: 'references#new', as: :new_reference
+  post 'reference/new', to: 'references#create', as: :create_reference
+
+  root 'publications#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
