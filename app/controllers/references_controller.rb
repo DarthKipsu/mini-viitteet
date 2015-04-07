@@ -2,7 +2,7 @@ class ReferencesController < ApplicationController
 
   # GET /references/new
   def new
-    @article = Article.new
+    @article_columns = Article.column_names
   end
 
   # POST /reference/new

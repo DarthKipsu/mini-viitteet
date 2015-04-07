@@ -2,42 +2,12 @@
 
 <div id="article" class="row">
     <%= form_tag create_reference_path, method: 'POST' do |f| %>
+        <% @article_columns.each do |column_name| %>
         <div class='form-group'>
-            <%= label_tag :author, 'Authors' %><br>
-            <%= text_field_tag :author %>
+            <%= label_tag column_name, column_name %><br>
+            <%= text_field_tag column_name %>
         </div>
-        <div class='form-group'>
-            <%= label_tag :title, 'Title' %><br>
-            <%= text_field_tag :title %>
-        </div>
-        <div class='form-group'>
-            <%= label_tag :journal, 'Journal' %><br>
-            <%= text_field_tag :journal %>
-        </div>
-        <div class='form-group'>
-            <%= label_tag :year, 'Year' %><br>
-            <%= number_field_tag :year %>
-        </div>
-        <div class='form-group'>
-            <%= label_tag :volume, 'Volume' %><br>
-            <%= text_field_tag :volume %>
-        </div>
-        <div class='form-group'>
-            <%= label_tag :number, 'Number' %><br>
-            <%= number_field_tag :number %>
-        </div>
-        <div class='form-group'>
-            <%= label_tag :pages, 'Pages' %><br>
-            <%= text_field_tag :pages %>
-        </div>
-        <div class='form-group'>
-            <%= label_tag :month, 'Month' %><br>
-            <%= text_field_tag :month %>
-        </div>
-        <div class='form-group'>
-            <%= label_tag :note, 'Note' %><br>
-            <%= text_field_tag :note %>
-        </div>
+        <% end %>
         <%= button_tag 'submit' %>
     <% end %>
 </div>
