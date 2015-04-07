@@ -7,6 +7,7 @@ ruby '2.2.0'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
 # Use SCSS for stylesheets
+gem 'bootstrap-sass', '~> 3.3.4'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -45,11 +46,21 @@ group :development, :test do
 
   # For test db
   gem 'sqlite3'
-  
+
   gem 'rspec-rails'
+end
+
+group :development do
+  gem 'guard'
 end
 
 group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+
+#bootstrap:
+gem 'twitter-bootswatch-rails', '~> 3.3'
+gem 'twitter-bootswatch-rails-fontawesome', '~> 4.3'
+gem 'therubyracer'
+gem 'twitter-bootswatch-rails-helpers'
