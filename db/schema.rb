@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407133835) do
+ActiveRecord::Schema.define(version: 20150407135838) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "author"
@@ -52,6 +52,19 @@ ActiveRecord::Schema.define(version: 20150407133835) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "miscs", force: :cascade do |t|
+    t.string   "author"
+    t.string   "title"
+    t.string   "howpublished"
+    t.integer  "month"
+    t.integer  "year"
+    t.string   "note"
+    t.string   "key"
+    t.string   "bibtexkey"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "phdtheses", force: :cascade do |t|
     t.string   "author"
     t.string   "title"
@@ -81,6 +94,13 @@ ActiveRecord::Schema.define(version: 20150407133835) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "publication_miscs", force: :cascade do |t|
+    t.integer  "publication_id"
+    t.integer  "misc_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "publication_phdtheses", force: :cascade do |t|
     t.integer  "publication_id"
     t.integer  "phdthesis_id"
@@ -88,8 +108,50 @@ ActiveRecord::Schema.define(version: 20150407133835) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "publication_techreports", force: :cascade do |t|
+    t.integer  "publication_id"
+    t.integer  "techreport_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "publication_unpublisheds", force: :cascade do |t|
+    t.integer  "publication_id"
+    t.integer  "unpublished_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "publications", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "techreports", force: :cascade do |t|
+    t.string   "author"
+    t.string   "title"
+    t.string   "institution"
+    t.integer  "year"
+    t.string   "type"
+    t.string   "number"
+    t.string   "address"
+    t.integer  "month"
+    t.string   "note"
+    t.string   "key"
+    t.string   "bibtexkey"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "unpublisheds", force: :cascade do |t|
+    t.string   "author"
+    t.string   "title"
+    t.string   "note"
+    t.integer  "month"
+    t.integer  "year"
+    t.string   "key"
+    t.string   "bibtexkey"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
