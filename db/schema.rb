@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407133400) do
+ActiveRecord::Schema.define(version: 20150407133835) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "author"
@@ -27,6 +27,29 @@ ActiveRecord::Schema.define(version: 20150407133400) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "bibtexkey"
+  end
+
+  create_table "incollections", force: :cascade do |t|
+    t.string   "author"
+    t.string   "title"
+    t.string   "booktitle"
+    t.string   "publisher"
+    t.integer  "year"
+    t.string   "editor"
+    t.string   "volume"
+    t.integer  "number"
+    t.string   "series"
+    t.string   "type"
+    t.string   "chapter"
+    t.string   "pages"
+    t.string   "address"
+    t.string   "edition"
+    t.integer  "month"
+    t.string   "note"
+    t.string   "key"
+    t.string   "bibtexkey"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "phdtheses", force: :cascade do |t|
@@ -49,6 +72,13 @@ ActiveRecord::Schema.define(version: 20150407133400) do
     t.integer  "article_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "publication_incollections", force: :cascade do |t|
+    t.integer  "publication_id"
+    t.integer  "incollection_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "publication_phdtheses", force: :cascade do |t|
