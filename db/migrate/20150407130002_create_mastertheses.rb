@@ -7,7 +7,7 @@ class CreateMastertheses < ActiveRecord::Migration
       t.integer :year
       t.string :type
       t.string :address
-      t.year :month
+      t.integer :month
       t.string :note
       t.string :key
       t.string :bibtexkey
