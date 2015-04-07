@@ -1,0 +1,17 @@
+sudo: false
+
+language: ruby
+rvm:
+- 2.2.0
+script:
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
+deploy:
+  provider: heroku
+  api_key:
+    secure: iKJka0E9RIv+sQWPWbRlpDmn9CWFgYSvIXv+5l5gZYzzaIHoRlBbTD/nb46VNLN2/cx3PHF3uGVar6z6UQJW6x8dLjeZ0VefATy68rN30YjUYRJOGHclEpbwg2/I9Ow5zOhVUgvi82hwiy+jvCuoNEElgrO/w+Pndh9FUvsIkcE=
+  app:
+    master: miniviitteet
+    staging: miniviitteet-staging

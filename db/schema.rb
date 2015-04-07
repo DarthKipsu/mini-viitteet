@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 20150407125832) do
     t.string   "type"
     t.string   "address"
     t.string   "edition"
+
+ActiveRecord::Schema.define(version: 20150407124357) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "author"
+    t.string   "title"
+    t.string   "journal"
+    t.integer  "year"
+    t.string   "volume"
+    t.integer  "number"
+    t.string   "pages"
     t.integer  "month"
     t.string   "note"
     t.string   "key"
@@ -100,6 +111,18 @@ ActiveRecord::Schema.define(version: 20150407125832) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "bibtexkey"
+
+  create_table "publication_articles", force: :cascade do |t|
+    t.integer  "publication_id"
+    t.integer  "article_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "publications", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
