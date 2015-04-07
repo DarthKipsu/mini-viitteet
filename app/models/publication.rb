@@ -12,5 +12,5 @@ class Publication < ActiveRecord::Base
   has_many :proceedings, through: :publication_proceedings
   has_many :techreports, through: :publication_techreports
   has_many :unpublisheds, through: :publication_unpublisheds    
-        
+
 end
