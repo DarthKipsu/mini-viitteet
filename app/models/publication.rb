@@ -14,11 +14,21 @@ class Publication < ActiveRecord::Base
   has_many :unpublisheds, through: :publication_unpublisheds    
 
   def references
-    @types = ReferenceHelper.reference_types
     @references = []
-    @types.each do |t|
-
-
-    end
+    @references += this.articles
+    @references += this.books
+    @references += this.booklets
+    @references += this.inbooks
+    @references += this.incollections
+    @references += this.inproceedings
+    @references += this.manuals
+    @references += this.masterstheses
+    @references += this.miscs
+    @references += this.phdtheses
+    @references += this.proceedings
+    @references += this.techreports
+    @references += this.unpublisheds
+    return @references
   end
+
 end
