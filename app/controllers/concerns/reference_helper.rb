@@ -13,4 +13,9 @@ module ReferenceHelper
              techreport: Techreport,
              unpublished: Unpublished }
   end
+
+  def form_fields(reference)
+    unwanted = Set.new ['id', 'key', 'created_at', 'updated_at']
+    return unwanted ^ reference.column_names.to_set
+  end
 end

@@ -24,5 +24,6 @@ class ReferencesController < ApplicationController
 
   	when :inproceeding
     redirect_to publications_path, notice: 'Reference added'
+    end
   end
 end
