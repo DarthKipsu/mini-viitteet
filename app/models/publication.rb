@@ -31,4 +31,7 @@ class Publication < ActiveRecord::Base
     return @references
   end
 
+  def add_ref(ref)
+    self.send(ref.class.name.downcase) << ref
+  end
 end
