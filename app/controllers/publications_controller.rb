@@ -10,7 +10,7 @@ class PublicationsController < ApplicationController
   # GET /publications/1
   # GET /publications/1.json
   def show
-    @references = Articles.all
+    @references = @publication.references
   end
 
   # GET /publications/new
