@@ -23,6 +23,8 @@ class ReferencesController < ApplicationController
   
   # DELETE references/1
   def destroy
-     
+     id = params[:id]
+     type = params[:type]
+     reference_types[type.to_sym].destroy(id)
   end
 end
