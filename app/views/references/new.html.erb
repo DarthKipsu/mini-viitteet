@@ -1,5 +1,13 @@
 <h1>Add new reference</h3>
 
+<div class="row">
+    <select id="type-selector" class="form-control">
+        <%= @reference.each do |reference| %>
+            <option value="<%= reference[0].to_s %>"><%= reference[0].to_s %></option>
+        <% end %>
+    </select>
+</div>
+
 <% @reference.each do |reference| %>
     <div id="<%= reference[0] %>" class="row hidden">
         <p><strong>Add <%= reference[0] %></strong></p>
