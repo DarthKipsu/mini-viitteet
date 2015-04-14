@@ -14,24 +14,8 @@ class Publication < ActiveRecord::Base
   has_many :unpublisheds, through: :publication_unpublisheds    
 
   def references
-    @references = []
-    @references += this.articles
-    @references += this.books
-    @references += this.booklets
-    @references += this.inbooks
-    @references += this.incollections
-    @references += this.inproceedings
-    @references += this.manuals
-    @references += this.masterstheses
-    @references += this.miscs
-    @references += this.phdtheses
-    @references += this.proceedings
-    @references += this.techreports
-    @references += this.unpublisheds
+    @references = (article + book + booklet + inbook + incollection + inproceeding + manual + mastersthese + misc + phdthese + proceeding + techreport + unpublished)  
     return @references
   end
 
-  def add_ref(ref)
-    self.send(ref.class.name.downcase) << ref
-  end
 end
