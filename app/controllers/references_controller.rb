@@ -1,12 +1,15 @@
 class ReferencesController < ApplicationController
+  include ReferenceHelper
 
   # GET /references/new
   def new
-    @article_columns = Article.column_names
+    @reference = Hash.new
+    reference_types.each{ |t| @reference[t[0]] = form_fields t[1] }
   end
 
   # POST /reference/new
   def create
+    type = params[:ref_type]
     redirect_to publications_path, notice: 'Reference added'
   end
 end
