@@ -9,4 +9,9 @@ class ReferencesController < ApplicationController
   def create
     redirect_to publications_path, notice: 'Reference added'
   end
+  
+  # DELETE references/1
+  def destroy
+     
+  end
 end
