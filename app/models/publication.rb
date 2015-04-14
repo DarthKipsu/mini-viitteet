@@ -11,6 +11,7 @@ class Publication < ActiveRecord::Base
   has_many :publication_phdtheses
   has_many :publication_techreports
   has_many :publication_unpublisheds
+  
 
   has_many :article, through: :publication_articles
   has_many :book, through: :publication_books
