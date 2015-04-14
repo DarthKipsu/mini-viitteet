@@ -13,4 +13,7 @@ class Publication < ActiveRecord::Base
   has_many :techreports, through: :publication_techreports
   has_many :unpublisheds, through: :publication_unpublisheds    
 
+  def references
+
+  end
 end
