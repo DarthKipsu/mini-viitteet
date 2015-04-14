@@ -10,6 +10,19 @@ class ReferencesController < ApplicationController
   # POST /reference/new
   def create
     type = params[:ref_type]
+  	case type
+
+  	when :article
+
+  	when :book
+
+  	when :booklet
+
+  	when :inbook
+
+  	when :incollection
+
+  	when :inproceeding
     redirect_to publications_path, notice: 'Reference added'
   end
 end
