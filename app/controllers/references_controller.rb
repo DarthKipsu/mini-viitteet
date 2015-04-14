@@ -20,4 +20,9 @@ class ReferencesController < ApplicationController
       redirect_to :back, notice: 'Please make sure reference data is correct'
     end
   end
+  
+  # DELETE references/1
+  def destroy
+     
+  end
 end
