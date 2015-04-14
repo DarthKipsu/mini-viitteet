@@ -1,7 +1,7 @@
 <h1>Add new reference</h3>
 
 <% @reference.each do |reference| %>
-    <div id="<%= reference[0] %>" class="row hidden">
+    <div id="<%= reference[0] %>" class="row">
         <p><strong>Add <%= reference[0] %></strong></p>
         <%= form_tag create_reference_path, method: 'POST' do |f| %>
             <%= hidden_field_tag :ref_type, reference[0] %>
