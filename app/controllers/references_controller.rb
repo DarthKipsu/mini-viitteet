@@ -26,4 +26,9 @@ class ReferencesController < ApplicationController
     redirect_to publications_path, notice: 'Reference added'
     end
   end
+  
+  # DELETE references/1
+  def destroy
+     
+  end
 end
