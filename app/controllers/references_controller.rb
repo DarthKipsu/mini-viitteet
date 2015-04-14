@@ -33,6 +33,7 @@ class ReferencesController < ApplicationController
   	when :incollection
 
   	when :inproceeding
+
     redirect_to publications_path, notice: 'Reference added'
   end
 end
