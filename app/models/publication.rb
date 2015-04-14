@@ -27,4 +27,7 @@ class Publication < ActiveRecord::Base
   has_many :techreport, through: :publication_techreports
   has_many :unpublished, through: :publication_unpublisheds    
 
+  def add_ref(ref)
+    self.send(ref.class.name.downcase) << ref
+  end
 end

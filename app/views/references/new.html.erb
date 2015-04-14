@@ -1,17 +1,18 @@
 <h1>Add new reference</h3>
 
 <% @reference.each do |reference| %>
-    <div id="<%= reference[0] %>" class="row">
+    <div id="<%= reference[0] %>" class="row hidden">
         <p><strong>Add <%= reference[0] %></strong></p>
         <%= form_tag create_reference_path, method: 'POST' do |f| %>
             <%= hidden_field_tag :ref_type, reference[0] %>
+            <%= hidden_field_tag :publication, @publication %>
             <% reference[1].each do |column_name| %>
-            <div class='form-group'>
-                <%= label_tag column_name, column_name %><br>
-                <%= text_field_tag column_name %>
-            </div>
+                <div class='form-group'>
+                    <%= label_tag column_name, column_name %><br>
+                    <%= text_field_tag column_name, '', class:'form-control' %>
+                </div>
             <% end %>
-            <%= button_tag 'submit' %>
+            <%= button_tag 'submit', class:'btn btn-default' %>
         <% end %>
     </div>
 <% end %>
