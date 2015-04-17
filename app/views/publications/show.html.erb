@@ -24,7 +24,11 @@
 
 <dl class="dl-horizontal">
 <% @references.each do |r| %>
+<<<<<<< HEAD
     <%= r.title %>
     <%= button_to "Destroy", destroy_reference_path(r, :type => r.class.name, :pub_id => @publication.id), :class => "btn btn-danger btn-xs", :method => 'delete' %>
+=======
+  <%= r %>
+>>>>>>> 4b167686312b58e48659544ac681c5410953f0b2
 <% end %>
 </dl>

@@ -1,6 +1,10 @@
 class Masterthesis < ActiveRecord::Base
-	has_many :publications, through: :publication_masterthesis
-	belongs_to :publication
+  has_many :publications, through: :publication_masterthesis
+  belongs_to :publication
 
-	validates :author, :title, :school, :year, presence: true
+  validates :author, :title, :school, :year, presence: true
+
+  def self.required_fields
+    %w(author school title year)
+  end
 end

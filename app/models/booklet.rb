@@ -3,4 +3,8 @@ class Booklet < ActiveRecord::Base
 	belongs_to :publication
 
 	validates :title, presence: true
+
+  def self.required_fields
+    %w(title)
+  end
 end
