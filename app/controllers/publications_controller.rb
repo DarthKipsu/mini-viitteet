@@ -9,16 +9,33 @@ class PublicationsController < ApplicationController
 
   # GET /publications/1
   # GET /publications/1.json
+
+  def not_show(c)
+    if c == "created_at" || c == "updated_at" || c == "bibtexkey"
+      return true;
+    else 
+      return false;
+    end
+  end
+
+  def get_muotoilu(re)
+    muotoilu = "@"
+      muotoilu += re.class.name + "{" + re.bibtexkey + ", <br />"
+      re.class.name.singularize.classify.constantize.column_names.each do |c|
+        if not_show(c) || re.send(c).to_s == ""
+          next;
+        end
+        muotoilu += "&nbsp; &nbsp; &nbsp; &nbsp;" + c + " = " + re.send(c).to_s + "<br />"
+      end
+      muotoilu += "} <br />"
+      return muotoilu
+  end
+
   def show
     @references = @publication.references
     @bibtexes = []
     @references.each do |re|
-      muotoilu = "@"
-      muotoilu += re.class.name + "{" + re.bibtexkey + ", \n"
-      re.class.name.column_names.each do |c|
-        muotoilu += c + " = " + re.c 
-      end
-      muotoilu += "} \n"
+      muotoilu = get_muotoilu(re)
       @bibtexes.push(muotoilu)
     end
   end
