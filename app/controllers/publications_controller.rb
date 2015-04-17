@@ -11,6 +11,16 @@ class PublicationsController < ApplicationController
   # GET /publications/1.json
   def show
     @references = @publication.references
+    @bibtexes = []
+    @references.each do |re|
+      muotoilu = "@"
+      muotoilu += re.class.name + "{" + re.bibtexkey + ", \n"
+      re.class.name.column_names.each do |c|
+        muotoilu += c + " = " + re.c 
+      end
+      muotoilu += "} \n"
+      @bibtexes.push(muotoilu)
+    end
   end
 
   # GET /publications/new
