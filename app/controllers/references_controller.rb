@@ -5,7 +5,7 @@ class ReferencesController < ApplicationController
   def new
     @publication = params[:publication]
     @reference = Hash.new
-    reference_types.each{ |t| @reference[t[0]] = form_fields t[1] }
+    reference_types.each{ |t| @reference[t[0]] = { fields: form_fields(t[1]), required: t[1].required_fields } }
   end
 
   # POST /reference/new
@@ -23,8 +23,11 @@ class ReferencesController < ApplicationController
   
   # DELETE references/1
   def destroy
-     id = params[:id]
-     type = params[:type]
-     reference_types[type.to_sym].destroy(id)
-  end
+
+     reference_id = (params[:type].downcase+"_id").to_sym
+     join_table_object = reference_joins[params[:type].downcase.to_sym].where(publication_id: params[:pub_id], reference_id => params[:id]).first
+     join_table_object.destroy unless join_table_object.nil?
+     redirect_to publication_path(params[:pub_id]), notice: "Reference removed!"
+   end
+
 end

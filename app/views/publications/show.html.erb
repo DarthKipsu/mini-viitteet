@@ -12,7 +12,7 @@
   <%= link_to t('.back', :default => t("helpers.links.back")),
               publications_path, :class => 'btn'  %>
   <%= link_to 'new',
-              new_reference_path, :class => 'btn btn-primary' %>
+              new_reference_path(publication: @publication), :class => 'btn btn-primary' %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_publication_path(@publication), :class => 'btn btn-primary' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -22,7 +22,13 @@
               :class => 'btn btn-danger' %>
 </div>
 
-
+<dl class="dl-horizontal">
 <% @references.each do |r| %>
-  <%= @reference %>
+<<<<<<< HEAD
+    <%= r.title %>
+    <%= button_to "Destroy", destroy_reference_path(r, :type => r.class.name, :pub_id => @publication.id), :class => "btn btn-danger btn-xs", :method => 'delete' %>
+=======
+  <%= r %>
+>>>>>>> 4b167686312b58e48659544ac681c5410953f0b2
 <% end %>
+</dl>

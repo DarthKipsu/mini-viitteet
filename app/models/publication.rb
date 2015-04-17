@@ -26,12 +26,14 @@ class Publication < ActiveRecord::Base
   has_many :techreport, through: :publication_techreports
   has_many :unpublished, through: :publication_unpublisheds    
 
+  validates :name, presence: true
+
   def add_ref(ref)
     self.send(ref.class.name.downcase) << ref
   end
 
   def references
-    @references = (article + book + inbook + incollection + inproceeding + manual + masterthesis + misc + phdthesis + techreport + unpublished)
+    @references = (article + book + booklet + inbook + incollection + inproceeding + manual + masterthesis + misc + phdthesis + techreport + unpublished)
     return @references
   end
 end
