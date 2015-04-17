@@ -9,6 +9,7 @@ FactoryGirl.define do
            journal    'Programming for everyone'
            year    '2010'
            volume    '3'
+           bibtexkey 'bib'
   end
 
   factory :book do
@@ -16,6 +17,7 @@ FactoryGirl.define do
      author    'Kaapo Kirjailija'
      publisher    'Publisher'
      year    '2010'
+     bibtexkey 'bib'
   end
 
   factory :inbook do
@@ -24,6 +26,7 @@ FactoryGirl.define do
      chapter    '4b'
      publisher    'Publisher'
      year    '2010'
+     bibtexkey 'bib'
   end
 
   factory :incollection do
@@ -32,6 +35,7 @@ FactoryGirl.define do
      booktitle    'Scrum fo everyone'
      publisher    'Publisher'
      year    '2010'
+     bibtexkey 'bib'
   end
 
   factory :inproceeding do
@@ -39,10 +43,12 @@ FactoryGirl.define do
      title    'Hands on agile'
      booktitle    'Scrum'
      year    '2010'
+     bibtexkey 'bib'
   end
 
   factory :manual do
       title    'Unix Manual'
+     bibtexkey 'bib'
   end
 
   factory :masterthesis do
@@ -50,10 +56,12 @@ FactoryGirl.define do
      title    'Event Relevance in Information Extraction'
      school    'University of Helsinki'
      year    '2011'
+     bibtexkey 'bib'
   end
 
   factory :misc do
      title    'Some agile chart found on facebook'
+     bibtexkey 'bib'
   end
 
   factory :phdthesis do
@@ -61,17 +69,20 @@ FactoryGirl.define do
      title 'Software Architectures'
      school    'University of Helsinki'
      year    '2013'
+     bibtexkey 'bib'
   end
   factory :techreport do
      author    'Late Lehtimies'
      title    'Agile Magazine'
      institution    'University of Helsinki'
      year    '2010'
+     bibtexkey 'bib'
   end
 
   factory :unpublished do
      author    'Kaapo Kirjailija'
      title    'Ajatuksia Kanbanista'
      note    'Diary'
+     bibtexkey 'bib'
   end
 end
