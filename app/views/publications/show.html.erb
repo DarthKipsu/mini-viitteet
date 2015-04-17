@@ -31,3 +31,7 @@
     <%= link_to "Destroy", destroy_reference_path(r, :type => r.class.name, :pub_id => @publication.id), :class => "btn btn-danger btn-xs", :method => 'delete' %>
 <% end %>
 </dl>
+
+<% @bibtexes.each do |b| %>
+  <%= b.html_safe %>
+<% end %>
