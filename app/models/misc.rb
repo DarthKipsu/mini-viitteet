@@ -10,6 +10,10 @@ class Misc < ActiveRecord::Base
     end
   end
 
+  def required_fields
+    %w(none)
+  end
+
   def self.required_fields
     %w(none)
   end

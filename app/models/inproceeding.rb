@@ -4,6 +4,10 @@ class Inproceeding < ActiveRecord::Base
 
   validates :author, :title, :booktitle, :year, presence: true
 
+  def required_fields
+    %w(author title year booktitle)
+  end
+
   def self.required_fields
     %w(author title year booktitle)
   end

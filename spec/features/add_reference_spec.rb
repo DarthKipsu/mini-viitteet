@@ -4,7 +4,7 @@ describe 'adding new references' do
   before(:each) do
     @pub = FactoryGirl.create(:publication)
     visit publication_path(@pub)
-    click_link 'new'
+    click_link 'Add new reference'
   end
 
   describe 'where type is article' do
