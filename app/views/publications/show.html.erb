@@ -15,7 +15,7 @@
               new_reference_path(publication: @publication), :class => 'btn btn-primary' %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_publication_path(@publication), :class => 'btn btn-primary' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+  <%= link_to 'Delete publication',
               publication_path(@publication),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
@@ -24,7 +24,7 @@
 
 <div>&nbsp;</div>
 
-<dl class="dl-horizontal">
+<dl class="dl-horizontal" id="references">
 <% @references.each do |r| %>
     <%= r.title %>
     <%= link_to 'Edit', edit_reference_path(type: r.class, id: r.id, publication: @publication), class: 'btn btn-primary btn-xs' %>
