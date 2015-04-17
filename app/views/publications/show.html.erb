@@ -9,11 +9,11 @@
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              publications_path, :class => 'btn'  %>
   <%= link_to 'Add new reference',
               new_reference_path(publication: @publication), :class => 'btn btn-primary' %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+  <%= link_to 'All publications',
+              publications_path, :class => 'btn btn-primary'  %>
+  <%= link_to 'Change name',
               edit_publication_path(@publication), :class => 'btn btn-primary' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               publication_path(@publication),
