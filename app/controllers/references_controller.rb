@@ -20,9 +20,12 @@ class ReferencesController < ApplicationController
       redirect_to :back, notice: 'Please make sure reference data is correct'
     end
   end
-  
+
   # DELETE references/1
   def destroy
-     
-  end
+     reference_id = (params[:type].downcase+"_id").to_sym
+     join_table_object = reference_joins[params[:type].downcase.to_sym].where(publication_id: params[:pub_id], reference_id => params[:id]).first
+     join_table_object.destroy unless join_table_object.nil?
+     redirect_to publication_path(params[:pub_id]), notice: "Reference removed!"
+   end
 end

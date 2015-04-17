@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'references/new', to: 'references#new', as: :new_reference
   post 'references/new', to: 'references#create', as: :create_reference
+  delete 'reference/:id', to: 'references#destroy', as: :destroy_reference
 
   root 'publications#index'
 

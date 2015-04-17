@@ -9,9 +9,24 @@ module ReferenceHelper
              manual: Manual,
              masterthesis: Masterthesis,
              misc: Misc,
-             phdtesis: Phdthesis,
+             phdthesis: Phdthesis,
              techreport: Techreport,
              unpublished: Unpublished }
+  end
+
+  def reference_joins
+    return { article: PublicationArticle,
+              booklet: PublicationBooklet,
+              book: PublicationBook,
+              inbook: PublicationInbook,
+              incollection: PublicationIncollection,
+              inproceeding: PublicationInproceeding,
+              manual: PublicationManual,
+              masterthesis: PublicationMasterthesis,
+              misc: PublicationMisc,
+              phdthesis: PublicationPhdthesis,
+              techreport: PublicationTechreport,
+              unpublished: PublicationUnpublished }
   end
 
   def form_fields(reference)
@@ -45,7 +60,7 @@ module ReferenceHelper
       params.permit(:author, :title, :institution, :year, :type, :number, :address, :month, :note, :bibtexkey)
     when :unpublished
       params.permit(:author, :title, :note, :month, :year, :bibtexkey)
-    else 
+    else
       params.permit()
     end
   end
