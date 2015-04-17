@@ -1,4 +1,4 @@
-$(document).ready(function() {
+var typeselector = function() {
     console.log('started')
     var selected = $('#article')
     selected.removeClass('hidden')
@@ -9,4 +9,6 @@ $(document).ready(function() {
         selected = $('#' + this.value)
         selected.removeClass('hidden')
     })
-})
+}
+$(document).ready(typeselector)
+$(document).on('page:load', typeselector)
