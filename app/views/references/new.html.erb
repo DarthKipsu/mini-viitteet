@@ -1,26 +1,43 @@
-<h1>Add new reference</h3>
+<h3>Add new reference</h3>
 
-<div class="row">
-    <select id="type-selector" class="form-control">
-        <%= @reference.each do |reference| %>
-            <option value="<%= reference[0].to_s %>"><%= reference[0].to_s %></option>
-        <% end %>
-    </select>
+<div class="col-md-8">
+    <div class='col-md-12'>
+        <div class='col-md-2 text-right'>
+            <p><strong>Type:</strong></p>
+        </div>
+        <div class='col-md-10'>
+            <select id="type-selector" class="form-control" name="type-selector">
+                <%= @reference.each do |reference| %>
+                    <option value="<%= reference[0].to_s %>"><%= reference[0].to_s %></option>
+                <% end %>
+            </select>
+            <br>
+        </div>
+    </div>
 </div>
 
 <% @reference.each do |reference| %>
-    <div id="<%= reference[0] %>" class="row hidden">
-        <p><strong>Add <%= reference[0] %></strong></p>
+    <div id="<%= reference[0] %>" class="col-md-8 hidden">
         <%= form_tag create_reference_path, method: 'POST' do |f| %>
             <%= hidden_field_tag :ref_type, reference[0] %>
             <%= hidden_field_tag :publication, @publication %>
-            <% reference[1].each do |column_name| %>
-                <div class='form-group'>
-                    <%= label_tag column_name, column_name %><br>
-                    <%= text_field_tag column_name, '', class:'form-control' %>
+            <% reference[1][:fields].each do |column_name| %>
+                <div class='form-group form-group-sm col-md-12'>
+                    <div class='col-md-2 text-right'>
+                        <%= label_tag column_name, "#{column_name}:" %>
+                        <%= '*' unless !reference[1][:required].include? column_name %>
+                    </div>
+                    <div class='col-md-10'>
+                        <%= text_field_tag column_name, '', class:'form-control', id: "#{reference[0]}-#{column_name}" %>
+                    </div>
                 </div>
             <% end %>
-            <%= button_tag 'submit', class:'btn btn-default' %>
+            <div class='col-md-4 text-right''>
+                <p>* required field</p>
+                <%= button_tag 'Submit', class:'btn btn-primary', id: "#{reference[0]}-submit" %>
+                <%= link_to 'Cancel', :back, class:'btn btn-primary' %>
+            </div>
         <% end %>
     </div>
 <% end %>
+

@@ -9,7 +9,7 @@ module ReferenceHelper
              manual: Manual,
              masterthesis: Masterthesis,
              misc: Misc,
-             phdtesis: Phdthesis,
+             phdthesis: Phdthesis,
              techreport: Techreport,
              unpublished: Unpublished }
   end

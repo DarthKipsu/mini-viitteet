@@ -5,7 +5,7 @@ class ReferencesController < ApplicationController
   def new
     @publication = params[:publication]
     @reference = Hash.new
-    reference_types.each{ |t| @reference[t[0]] = form_fields t[1] }
+    reference_types.each{ |t| @reference[t[0]] = { fields: form_fields(t[1]), required: t[1].required_fields } }
   end
 
   # POST /reference/new
@@ -19,10 +19,5 @@ class ReferencesController < ApplicationController
     else
       redirect_to :back, notice: 'Please make sure reference data is correct'
     end
-  end
-  
-  # DELETE references/1
-  def destroy
-     
   end
 end
