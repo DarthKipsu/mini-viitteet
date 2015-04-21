@@ -35,13 +35,6 @@
         :class => 'btn btn-danger' %>
 </div>
 <br>
-<div class="col-md-12 well">
-    <h3>Achievements unlocked: </h3>
-    <% @unlocked_achievements.each do |ach| %>
-        <p><%= ach.name %><p>
-    <% end %>
-</div>
-<br>
 <div class="form-actions">
   <%= form_tag :controller => 'publications', :action => 'search', :method => 'get' do %>
     <%= text_field_tag :search, params[:search], :id => 'search_field', :placeholder => "Search references" %>
