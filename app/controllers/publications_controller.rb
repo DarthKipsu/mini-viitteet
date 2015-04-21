@@ -65,6 +65,7 @@ class PublicationsController < ApplicationController
       muotoilu = get_muotoilu(re)
       @bibtexes.push(muotoilu)
     end
+    @unlocked_achievements = @publication.achievements
   end
 
   # GET /publications/new
