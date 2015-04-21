@@ -11,6 +11,7 @@ class ReferencesController < ApplicationController
 
   # POST /reference/new
   def create
+    expire_fragment('publicationShow')
     ref_type = params[:ref_type].to_sym
     @pub = Publication.find_by_id params[:publication]
     @ref = reference_types[ref_type].new(reference_params_for ref_type)
@@ -25,6 +26,7 @@ class ReferencesController < ApplicationController
 
   # DELETE references/1
   def destroy
+    expire_fragment('publicationShow')
     reference_id = (params[:type].downcase+"_id").to_sym
     join_table_object = reference_joins[params[:type].downcase.to_sym].where(publication_id: params[:pub_id], reference_id => params[:id]).first
     join_table_object.destroy unless join_table_object.nil?
@@ -33,6 +35,8 @@ class ReferencesController < ApplicationController
 
   # GET references/edit
   def edit
+    expire_fragment('publicationShow')
+
     @reference = params[:type].singularize.classify.constantize.find_by_id params[:id]
     @columns = form_fields params[:type].singularize.classify.constantize
     @publication = params[:publication]
@@ -40,6 +44,7 @@ class ReferencesController < ApplicationController
 
   # POST references/edit
   def update
+    expire_fragment('publicationShow')
     @reference = params[:ref_type].singularize.classify.constantize.find_by_id params[:id]
     if @reference.update(reference_params_for params[:ref_type].downcase.to_sym)
       redirect_to publication_path(params[:publication]), notice: 'Reference updated'
