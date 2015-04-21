@@ -1,5 +1,7 @@
 <%- model_class = Publication -%>
 
+<% cache 'publicationShow', skip_digest: true do %>
+
 <% @achievements.each do |ach| %>
     <div class="achievement">
         <h3>Achievement unlocked: <%= ach.name %></h3>
@@ -60,4 +62,5 @@
 
 <% @bibtexes.each do |b| %>
     <%= b.html_safe %>
+<% end %>
 <% end %>
