@@ -10,7 +10,9 @@ module AchievementHelper
       r.author && ['Matti Luukkainen', 'Luukkainen, M', 'Luukkainen, Matti', 'M. Luukkainen', 'mluukkai'].include?(r.author)
     end
     if !authors.empty?
-      publication.achievements << Achievement.find_by(name:'Matti Luukkainen')
+      ach = Achievement.find_by(name:'Matti Luukkainen')
+      publication.achievements << ach
+      PublicationAchievement.find_by(publication_id: publication.id, achievement_id: ach.id).update(display: true)
       return true
     end
     false

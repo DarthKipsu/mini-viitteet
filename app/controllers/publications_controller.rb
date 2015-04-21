@@ -34,6 +34,10 @@ class PublicationsController < ApplicationController
   def show
     @references = @publication.references
     @bibtexes = []
+    @achievements = []
+    @publication.display_new_achievements.each do |a|
+      @achievements << Achievement.find_by_id(PublicationAchievement.find_by_id(a.id).achievement_id)
+    end
     @references.each do |re|
       muotoilu = get_muotoilu(re)
       @bibtexes.push(muotoilu)

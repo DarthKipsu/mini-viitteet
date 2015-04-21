@@ -29,6 +29,12 @@ class Publication < ActiveRecord::Base
 
   validates :name, presence: true
 
+  def display_new_achievements
+    achievements = self.publication_achievements.for_display.clone
+    #achievements.each{ |a| a.update(display: nil) }
+    achievements
+  end
+
   def add_ref(ref)
     self.send(ref.class.name.downcase) << ref
   end

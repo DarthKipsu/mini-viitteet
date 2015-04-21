@@ -1,37 +1,48 @@
 <%- model_class = Publication -%>
+
+<% @achievements.each do |ach| %>
+    <div class="achievement">
+        <h3>Achievement unlocked: <%= ach.name %></h3>
+        <div>
+            <p><%= ach.description %></p>
+            <button class="md-close">Close me!</button>
+        </div>
+    </div>
+<% end %>
+
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+    <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @publication.name %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+    <dd><%= @publication.name %></dd>
 </dl>
 
 <div class="form-actions">
-  <%= link_to 'Add new reference',
-              new_reference_path(publication: @publication), :class => 'btn btn-primary' %>
-  <%= link_to 'All publications',
-              publications_path, :class => 'btn btn-primary'  %>
-  <%= link_to 'Change name',
-              edit_publication_path(@publication), :class => 'btn btn-primary' %>
-  <%= link_to 'Delete publication',
-              publication_path(@publication),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+    <%= link_to 'Add new reference',
+        new_reference_path(publication: @publication), :class => 'btn btn-primary' %>
+    <%= link_to 'All publications',
+        publications_path, :class => 'btn btn-primary'  %>
+    <%= link_to 'Change name',
+        edit_publication_path(@publication), :class => 'btn btn-primary' %>
+    <%= link_to 'Delete publication',
+        publication_path(@publication),
+        :method => 'delete',
+        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+        :class => 'btn btn-danger' %>
 </div>
 
 <div>&nbsp;</div>
 
 <dl class="dl-horizontal" id="references">
-<% @references.each do |r| %>
-    <%= r.title %>
-    <%= link_to 'Edit', edit_reference_path(type: r.class, id: r.id, publication: @publication), class: 'btn btn-primary btn-xs' %>
-    <%= link_to "Destroy", destroy_reference_path(r, :type => r.class.name, :pub_id => @publication.id), :class => "btn btn-danger btn-xs", :method => 'delete' %>
-<% end %>
+    <% @references.each do |r| %>
+        <%= r.title %>
+        <%= link_to 'Edit', edit_reference_path(type: r.class, id: r.id, publication: @publication), class: 'btn btn-primary btn-xs' %>
+        <%= link_to "Destroy", destroy_reference_path(r, :type => r.class.name, :pub_id => @publication.id), :class => "btn btn-danger btn-xs", :method => 'delete' %>
+    <% end %>
 </dl>
 
 <% @bibtexes.each do |b| %>
-  <%= b.html_safe %>
+    <%= b.html_safe %>
 <% end %>
