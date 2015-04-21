@@ -1,6 +1,5 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
-  include ReferenceHelper
 
   # GET /publications
   # GET /publications.json
@@ -8,34 +7,13 @@ class PublicationsController < ApplicationController
     @publications = Publication.all
   end
 
-  def search
-    search = params[:search]
-    results = Set.new
-    reference_types.each do |type, object|
-      object.all.each{|o|
-        object.column_names.each do |name|
-          if o[name.to_s].to_s.downcase.include?(search.downcase) and Publication.find(params[:id]).references.include?(o)
-            then
-              results << o
-            end
-          end
-        }
-      end
-      @results = []
-
-      results.each do |re|
-        muotoilu = get_muotoilu(re)
-        @results << muotoilu
-      end
-  end
-
   # GET /publications/1
   # GET /publications/1.json
 
   def not_show(c)
-    if c == "created_at" || c == "updated_at" || c == "bibtexkey" || c == "id"
+    if c == "created_at" || c == "updated_at" || c == "bibtexkey"
       return true;
-    else
+    else 
       return false;
     end
   end
@@ -64,6 +42,7 @@ class PublicationsController < ApplicationController
       muotoilu = get_muotoilu(re)
       @bibtexes.push(muotoilu)
     end
+    @unlocked_achievements = @publication.achievements
   end
 
   # GET /publications/new
