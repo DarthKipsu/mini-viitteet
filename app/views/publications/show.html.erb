@@ -21,6 +21,14 @@
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
 </div>
+<br>
+<div class="form-actions">
+  <%= form_tag :controller => 'publications', :action => 'search', :method => 'get' do %>
+    <%= text_field_tag :search, params[:search], :id => 'search_field', :placeholder => "Search references" %>
+    <%= submit_tag "Search", :name => nil, :class => 'btn btn-success btn-xs' %>
+  <% end %>
+</div>
+
 
 <div>&nbsp;</div>
 

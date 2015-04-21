@@ -1,0 +1,25 @@
+<%- model_class = Publication -%>
+<div class="page-header">
+  <h1>Search reference</h1>
+</div>
+
+
+<%= form_tag :controller => 'publications', :action => 'search', :method => 'get' do %>
+  <%= text_field_tag :search, params[:search], :id => 'search_field', :placeholder => "Search references" %>
+  <%= submit_tag "Search", :name => nil, :class => 'btn btn-success btn-xs' %>
+<% end %>
+<p>
+  <span class="badge">
+    <% if not @results.nil? %>
+    <%= pluralize(@results.count, "result") %></span>
+    <% end %>
+  </p>
+
+<ul>
+  <% @results.each do |result| %>
+    <li><%= result.html_safe %></li>
+  <% end %>
+</ul>
+
+
+<%= link_to "Back", publication_path(params[:id]), :class => "btn btn-default" %>
