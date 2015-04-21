@@ -33,7 +33,7 @@ class PublicationsController < ApplicationController
   # GET /publications/1.json
 
   def not_show(c)
-    if c == "created_at" || c == "updated_at" || c == "bibtexkey"
+    if c == "created_at" || c == "updated_at" || c == "bibtexkey" || c == "id"
       return true;
     else
       return false;
