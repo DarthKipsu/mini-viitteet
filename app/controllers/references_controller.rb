@@ -27,6 +27,10 @@ class ReferencesController < ApplicationController
   # DELETE references/1
   def destroy
     expire_fragment('publicationShow')
+    if ['Matti Luukkainen', 'Luukkainen, M', 'Luukkainen, Matti', 'M. Luukkainen', 'mluukkai'].include? params[:type].singularize.classify.constantize.find_by_id(params[:id]).author
+      redirect_to publication_path(params[:pub_id]), notice: "You can't delete references by Matti Luukkainen!"
+      return
+    end
     reference_id = (params[:type].downcase+"_id").to_sym
     join_table_object = reference_joins[params[:type].downcase.to_sym].where(publication_id: params[:pub_id], reference_id => params[:id]).first
     join_table_object.destroy unless join_table_object.nil?
