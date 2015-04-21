@@ -1,5 +1,6 @@
 class ReferencesController < ApplicationController
   include ReferenceHelper
+  include AchievementHelper
 
   # GET /references/new
   def new
@@ -15,6 +16,7 @@ class ReferencesController < ApplicationController
     @ref = reference_types[ref_type].new(reference_params_for ref_type)
     if @pub && @ref.save
       @pub.add_ref @ref
+      achievements_unlocked_for @pub
       redirect_to publication_path(params[:publication]), notice: 'Reference added'
     else
       redirect_to :back, notice: 'Please make sure reference data is correct'

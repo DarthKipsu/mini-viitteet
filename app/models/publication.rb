@@ -11,7 +11,7 @@ class Publication < ActiveRecord::Base
   has_many :publication_phdtheses
   has_many :publication_techreports
   has_many :publication_unpublisheds
-  
+  has_many :publication_achievements 
 
   has_many :article, through: :publication_articles
   has_many :book, through: :publication_books
@@ -25,6 +25,7 @@ class Publication < ActiveRecord::Base
   has_many :phdthesis, through: :publication_phdtheses
   has_many :techreport, through: :publication_techreports
   has_many :unpublished, through: :publication_unpublisheds    
+  has_many :achievements, through: :publication_achievements
 
   validates :name, presence: true
 
