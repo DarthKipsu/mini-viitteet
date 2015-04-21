@@ -14,7 +14,7 @@ class PublicationsController < ApplicationController
     reference_types.each do |type, object|
       object.all.each{|o|
         object.column_names.each do |name|
-          if o[name.to_s].to_s.include?(search) and Publication.find(params[:id]).references.include?(o)
+          if o[name.to_s].to_s.downcase.include?(search.downcase) and Publication.find(params[:id]).references.include?(o)
             then
               results << o
             end
