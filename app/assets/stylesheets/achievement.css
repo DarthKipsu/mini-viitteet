@@ -6,7 +6,7 @@
     position: relative;
     /* Chrome, Safari, Opera */
     -webkit-animation-name: example;
-    -webkit-animation-duration: 2s;
+    -webkit-animation-duration: 10s;
     -webkit-animation-timing-function: linear;
     -webkit-animation-delay: 2s;
     -webkit-animation-iteration-count: infinite;

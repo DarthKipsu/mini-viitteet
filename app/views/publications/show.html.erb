@@ -6,7 +6,8 @@
         <div style="padding:10px;"><h3>Achievement unlocked: <%= ach.name %></h3></div>
         <div>
             <p><%= ach.description %></p>
-            <button class="md-close">Close me!</button>
+            <%= image_tag(ach.imagelink, alt: 'Mluukkai o paras', class: "") %>
+            <button class="md-close btn btn-primary btn-lg close_ach">Close me!</button>
         </div>
         </center>
     </div>
