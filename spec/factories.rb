@@ -85,4 +85,8 @@ FactoryGirl.define do
      note    'Diary'
      bibtexkey 'bib'
   end
+
+  factory :achievement do
+    name 'Matti Luukkainen'
+  end
 end
