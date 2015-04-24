@@ -32,7 +32,7 @@ class Publication < ActiveRecord::Base
 
   def display_new_achievements
     achievements = self.publication_achievements.for_display.clone
-    #achievements.each{ |a| a.update(display: nil) }
+    achievements.each{ |a| a.update(display: nil) }
     achievements
   end
 
