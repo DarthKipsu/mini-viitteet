@@ -59,7 +59,11 @@ class PublicationsController < ApplicationController
         if not_show(c) || re.send(c).to_s == ""
           next;
         end
-        muotoilu += "&nbsp; &nbsp; &nbsp; &nbsp;" + c + " = " + re.send(c).to_s + "<br />"
+        if c == "year" || c == "number"
+          muotoilu += "&nbsp; &nbsp; &nbsp; &nbsp;" + c + " = " + re.send(c).to_s + "<br />"
+        else 
+          muotoilu += "&nbsp; &nbsp; &nbsp; &nbsp;" + c + ' = "' + re.send(c).to_s + '"<br />'
+        end
       end
       muotoilu += "} <br />"
       return muotoilu
