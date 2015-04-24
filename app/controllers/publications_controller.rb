@@ -61,7 +61,7 @@ class PublicationsController < ApplicationController
         end
         if c == "year" || c == "number"
           muotoilu += "&nbsp; &nbsp; &nbsp; &nbsp;" + c + " = " + re.send(c).to_s + "<br />"
-        else 
+        else
           muotoilu += "&nbsp; &nbsp; &nbsp; &nbsp;" + c + ' = "' + re.send(c).to_s + '"<br />'
         end
       end
