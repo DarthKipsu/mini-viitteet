@@ -13,7 +13,9 @@
 <% end %>
 
 <div class="page-header">
-    <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+    <h1><%=t '.title', :default => model_class.model_name.human %>
+      <%= link_to 'Download', download_publication_path(@publication), :class => "btn btn-success btn-xs" %>
+    </h1>
 </div>
 
 <dl class="dl-horizontal">

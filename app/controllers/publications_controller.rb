@@ -1,5 +1,5 @@
 class PublicationsController < ApplicationController
-  before_action :set_publication, only: [:show, :edit, :update, :destroy]
+  before_action :set_publication, only: [:show, :edit, :update, :destroy, :download]
   before_action :skip_if_cached, only:[:show]
   include ReferenceHelper
 
@@ -7,6 +7,17 @@ class PublicationsController < ApplicationController
   # GET /publications.json
   def index
     @publications = Publication.all
+  end
+
+  def download
+    content = ""
+    @publication.references.each do |re|
+      muotoilu = get_muotoilu(re)
+      content += muotoilu
+    end
+    content.gsub!("<br />", "\n")
+    content.gsub!("&nbsp;", " ")
+    send_data content, :filename => "references.bib"
   end
 
   def search
