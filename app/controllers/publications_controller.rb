@@ -1,5 +1,6 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
+  before_action :skip_if_cached, only:[:show]
   include ReferenceHelper
 
   # GET /publications
@@ -64,6 +65,7 @@ class PublicationsController < ApplicationController
       muotoilu = get_muotoilu(re)
       @bibtexes.push(muotoilu)
     end
+    @unlocked_achievements = @publication.achievements
   end
 
   # GET /publications/new
@@ -124,5 +126,9 @@ class PublicationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def publication_params
       params.require(:publication).permit(:name)
+    end
+
+    def skip_if_cached
+      return render :show if fragment_exist?( 'publicationShow' )
     end
 end
