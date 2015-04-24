@@ -41,24 +41,25 @@
     <% end %>
 </div>
 <br>
-<div class="form-actions">
-  <%= form_tag :controller => 'publications', :action => 'search', :method => 'get' do %>
-    <%= text_field_tag :search, params[:search], :id => 'search_field', :placeholder => "Search references" %>
-    <%= submit_tag "Search", :name => nil, :class => 'btn btn-success btn-xs' %>
-  <% end %>
+
+&nbsp;
+<div class="panel panel-default">
+  <div class="panel-heading"><h2>References</h2>
+    <div class="form-actions">
+      <%= form_tag :controller => 'publications', :action => 'search', :method => 'get' do %>
+      <%= text_field_tag :search, params[:search], :id => 'search_field', :placeholder => "Search references" %>
+      <%= submit_tag "Search", :name => nil, :class => 'btn btn-success btn-xs' %>
+      <% end %>
+    </div>
+  </div>
+  <ul class="list-group" id="references">
+      <% @references.each do |r| %>
+        <li class="list-group-item">
+          <h4><% if r.title? %> <%= r.title %> <% end %>
+            <%= link_to 'Edit', edit_reference_path(type: r.class, id: r.id, publication: @publication), class: 'btn btn-primary btn-xs' %>
+            <%= link_to "Destroy", destroy_reference_path(r, :type => r.class.name, :pub_id => @publication.id), :class => "btn btn-danger btn-xs", :method => 'delete' %>
+          </h4>
+        </li>
+      <% end %>
+  </ul>
 </div>
-
-
-<div>&nbsp;</div>
-
-<dl class="dl-horizontal" id="references">
-    <% @references.each do |r| %>
-        <%= r.title %>
-        <%= link_to 'Edit', edit_reference_path(type: r.class, id: r.id, publication: @publication), class: 'btn btn-primary btn-xs' %>
-        <%= link_to "Destroy", destroy_reference_path(r, :type => r.class.name, :pub_id => @publication.id), :class => "btn btn-danger btn-xs", :method => 'delete' %>
-    <% end %>
-</dl>
-
-<% @bibtexes.each do |b| %>
-    <%= b.html_safe %>
-<% end %>
