@@ -1,25 +1,59 @@
 class ReferencesController < ApplicationController
+  include ReferenceHelper
+  include AchievementHelper
 
   # GET /references/new
   def new
+    @publication = params[:publication]
     @reference = Hash.new
-    @reference[:article] = Article.column_names
-    @reference[:book] = Book.column_names
-    @reference[:booklet] = Booklet.column_names
-    @reference[:inbook] = Inbook.column_names
-    @reference[:incollection] = Incollection.column_names
-    @reference[:inproceeding] = Inproceeding.column_names
-    @reference[:manual] = Manual.column_names
-    @reference[:masterthesis] = Masterthesis.column_names
-    @reference[:misc] = Misc.column_names
-    @reference[:phdthesis] = Phdthesis.column_names
-    @reference[:techreport] = Techreport.column_names
-    @reference[:unpublished] = Unpublished.column_names
+    reference_types.each{ |t| @reference[t[0]] = { fields: form_fields(t[1]), required: t[1].required_fields } }
   end
 
   # POST /reference/new
   def create
-  	type = params[:ref_type]
-    redirect_to publications_path, notice: 'Reference added'
+    expire_fragment('publicationShow')
+    ref_type = params[:ref_type].to_sym
+    @pub = Publication.find_by_id params[:publication]
+    @ref = reference_types[ref_type].new(reference_params_for ref_type)
+    if @pub && @ref.save
+      @pub.add_ref @ref
+      achievements_unlocked_for @pub
+      redirect_to publication_path(params[:publication]), notice: 'Reference added'
+    else
+      redirect_to :back, notice: 'Please make sure reference data is correct'
+    end
+  end
+
+  # DELETE references/1
+  def destroy
+    expire_fragment('publicationShow')
+    if ['Matti Luukkainen', 'Luukkainen, M', 'Luukkainen, Matti', 'M. Luukkainen', 'mluukkai'].include? params[:type].singularize.classify.constantize.find_by_id(params[:id]).author
+      redirect_to publication_path(params[:pub_id]), notice: "You can't delete references by Matti Luukkainen!"
+      return
+    end
+    reference_id = (params[:type].downcase+"_id").to_sym
+    join_table_object = reference_joins[params[:type].downcase.to_sym].where(publication_id: params[:pub_id], reference_id => params[:id]).first
+    join_table_object.destroy unless join_table_object.nil?
+    redirect_to publication_path(params[:pub_id]), notice: "Reference removed!"
+  end
+
+  # GET references/edit
+  def edit
+    expire_fragment('publicationShow')
+
+    @reference = params[:type].singularize.classify.constantize.find_by_id params[:id]
+    @columns = form_fields params[:type].singularize.classify.constantize
+    @publication = params[:publication]
+  end
+
+  # POST references/edit
+  def update
+    expire_fragment('publicationShow')
+    @reference = params[:ref_type].singularize.classify.constantize.find_by_id params[:id]
+    if @reference.update(reference_params_for params[:ref_type].downcase.to_sym)
+      redirect_to publication_path(params[:publication]), notice: 'Reference updated'
+    else
+      redirect_to :back, notice: 'Please make sure reference data is correct'
+    end
   end
 end

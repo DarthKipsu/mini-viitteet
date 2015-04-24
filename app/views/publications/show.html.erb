@@ -1,23 +1,67 @@
 <%- model_class = Publication -%>
+
+<% @achievements.each do |ach| %>
+    <div class="achievement">
+        <center>
+        <div style="padding:10px;"><h3>Achievement unlocked: <%= ach.name %></h3></div>
+        <div>
+            <p><%= ach.description %></p>
+            <%= image_tag(ach.imagelink, alt: 'Mluukkai o paras', class: "") %>
+            <button class="md-close btn btn-primary btn-lg close_ach">Close me!</button>
+        </div>
+        </center>
+    </div>
+<% end %>
+
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+    <h1><%= @publication.name %>
+      <%= link_to 'Download', download_publication_path(@publication), :class => "btn btn-success btn-xs" %>
+    </h1>
+    <h6>Publication</h6>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @publication.name %></dd>
-</dl>
-
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              publications_path, :class => 'btn'  %>
-  <%= link_to 'new',
-              new_reference_path, :class => 'btn btn-primary' %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_publication_path(@publication), :class => 'btn btn-primary' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              publication_path(@publication),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+    <%= link_to 'Add new reference',
+        new_reference_path(publication: @publication), :class => 'btn btn-default' %>
+    <%= link_to 'All publications',
+        publications_path, :class => 'btn btn-default'  %>
+    <%= link_to 'Change name',
+        edit_publication_path(@publication), :class => 'btn btn-warning' %>
+    <%= link_to 'Delete publication',
+        publication_path(@publication),
+        :method => 'delete',
+        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+        :class => 'btn btn-danger' %>
+</div>
+<br>
+<% if @unlocked_achievements.length > 0 %>
+<div class="col-md-12 well">
+    <h3>Achievements unlocked: </h3>
+    <% @unlocked_achievements.each do |ach| %>
+        <p><%= ach.name %><p>
+    <% end %>
+</div>
+<% end %>
+<br>
+
+&nbsp;
+<div class="panel panel-default">
+  <div class="panel-heading"><h2>References</h2>
+    <div class="form-actions">
+      <%= form_tag :controller => 'publications', :action => 'search', :method => 'get' do %>
+      <%= text_field_tag :search, params[:search], :id => 'search_field', :placeholder => "Search references" %>
+      <%= submit_tag "Search", :name => nil, :class => 'btn btn-success btn-xs' %>
+      <% end %>
+    </div>
+  </div>
+  <ul class="list-group" id="references">
+      <% @references.each do |r| %>
+        <li class="list-group-item">
+          <h4><% if r.title? %> <%= r.title %> <% end %>
+            <%= link_to 'Edit', edit_reference_path(type: r.class, id: r.id, publication: @publication), class: 'btn btn-primary btn-xs' %>
+            <%= link_to "Destroy", destroy_reference_path(r, :type => r.class.name, :pub_id => @publication.id), :class => "btn btn-danger btn-xs", :method => 'delete' %>
+          </h4>
+        </li>
+      <% end %>
+  </ul>
 </div>
