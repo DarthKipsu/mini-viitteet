@@ -15,6 +15,7 @@ describe 'adding new references' do
       fill_in 'article-year', with: '2010'
       fill_in 'article-volume', with: '3'
       expect{ click_button 'article-submit' }.to change{ Article.count }.by 1
+      checkEditTitle
     end
 
     it 'does not save article to db if required info is missing' do
@@ -30,6 +31,7 @@ describe 'adding new references' do
     it 'adds booklet to db' do
       fill_in 'booklet-title', with: 'Scrum masters guidelines'
       expect{ click_button 'booklet-submit' }.to change{ Booklet.count }.by 1
+      checkEditTitle
     end
 
     it 'does not save booklet to db if required info is missing' do
@@ -48,6 +50,7 @@ describe 'adding new references' do
       fill_in 'book-publisher', with: 'Publisher'
       fill_in 'book-year', with: '2010'
       expect{ click_button 'book-submit' }.to change{ Book.count }.by 1
+      checkEditTitle
     end
 
     it 'adds book to db when editor is selected' do
@@ -56,6 +59,7 @@ describe 'adding new references' do
       fill_in 'book-publisher', with: 'Publisher'
       fill_in 'book-year', with: '2010'
       expect{ click_button 'book-submit' }.to change{ Book.count }.by 1
+      checkEditTitle
     end
 
     it 'does not save bookto db if required info is missing' do
@@ -75,6 +79,7 @@ describe 'adding new references' do
       fill_in 'inbook-publisher', with: 'Publisher'
       fill_in 'inbook-year', with: '2010'
       expect{ click_button 'inbook-submit' }.to change{ Inbook.count }.by 1
+      checkEditTitle
     end
 
     it 'adds inbook to db when editor and pages is selected' do
@@ -84,6 +89,7 @@ describe 'adding new references' do
       fill_in 'inbook-publisher', with: 'Publisher'
       fill_in 'inbook-year', with: '2010'
       expect{ click_button 'inbook-submit' }.to change{ Inbook.count }.by 1
+      checkEditTitle
     end
 
     it 'does not save inbookto db if required info is missing' do
@@ -103,6 +109,7 @@ describe 'adding new references' do
       fill_in 'incollection-publisher', with: 'Publisher'
       fill_in 'incollection-year', with: '2010'
       expect{ click_button 'incollection-submit' }.to change{ Incollection.count }.by 1
+      checkEditTitle
     end
 
     it 'does not save incollection to db if required info is missing' do
@@ -121,6 +128,7 @@ describe 'adding new references' do
       fill_in 'inproceeding-booktitle', with: 'Scrum'
       fill_in 'inproceeding-year', with: '2010'
       expect{ click_button 'inproceeding-submit' }.to change{ Inproceeding.count }.by 1
+      checkEditTitle
     end
 
     it 'does not save inproceeding to db if required info is missing' do
@@ -136,6 +144,7 @@ describe 'adding new references' do
     it 'adds manual to db' do
       fill_in 'manual-title', with: 'Unix Manual'
       expect{ click_button 'manual-submit' }.to change{ Manual.count }.by 1
+      checkEditTitle
     end
 
     it 'does not save manual to db if required info is missing' do
@@ -154,6 +163,7 @@ describe 'adding new references' do
       fill_in 'masterthesis-school', with: 'University of Helsinki'
       fill_in 'masterthesis-year', with: '2011'
       expect{ click_button 'masterthesis-submit' }.to change{ Masterthesis.count }.by 1
+      checkEditTitle
     end
 
     it 'does not save masterthesis to db if required info is missing' do
@@ -169,6 +179,7 @@ describe 'adding new references' do
     it 'adds misc to db' do
       fill_in 'misc-title', with: 'Some agile chart found on facebook'
       expect{ click_button 'misc-submit' }.to change{ Misc.count }.by 1
+      checkEditTitle
     end
 
     it 'does not save misc to db if all fields are empty' do
@@ -187,6 +198,7 @@ describe 'adding new references' do
       fill_in 'phdthesis-school', with: 'University of Helsinki'
       fill_in 'phdthesis-year', with: '2013'
       expect{ click_button 'phdthesis-submit' }.to change{ Phdthesis.count }.by 1
+      checkEditTitle
     end
 
     it 'does not save phdthesis to db if required info is missing' do
@@ -205,6 +217,7 @@ describe 'adding new references' do
       fill_in 'techreport-institution', with: 'University of Helsinki'
       fill_in 'techreport-year', with: '2010'
       expect{ click_button 'techreport-submit' }.to change{ Techreport.count }.by 1
+      checkEditTitle
     end
 
     it 'does not save techreport to db if required info is missing' do
@@ -222,10 +235,19 @@ describe 'adding new references' do
       fill_in 'unpublished-title', with: 'Ajatuksia Kanbanista'
       fill_in 'unpublished-note', with: 'Diary'
       expect{ click_button 'unpublished-submit' }.to change{ Unpublished.count }.by 1
+      checkEditTitle
     end
 
     it 'does not save unpublished to db if required info is missing' do
       expect{ click_button 'unpublished-submit' }.to change{ Unpublished.count }.by 0
     end
   end
+end
+
+
+def checkEditTitle
+  click_link 'Edit'
+  fill_in 'title', with: 'DROP TABLE Groups 4ever'
+  click_button 'Submit'
+  expect(page).to have_content 'Reference updated'
 end

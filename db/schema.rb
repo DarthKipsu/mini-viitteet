@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414133549) do
+ActiveRecord::Schema.define(version: 20150424091630) do
+
+  create_table "achievements", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "imagelink"
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string   "author"
@@ -180,6 +188,14 @@ ActiveRecord::Schema.define(version: 20150414133549) do
     t.string   "note"
     t.string   "key"
     t.string   "bibtexkey"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "publication_achievements", force: :cascade do |t|
+    t.integer  "publication_id"
+    t.integer  "achievement_id"
+    t.boolean  "display"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end

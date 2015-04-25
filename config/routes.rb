@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   post 'references/edit', to: 'references#update', as: :update_reference
 
   delete 'reference/:id', to: 'references#destroy', as: :destroy_reference
+  post 'publications/:id/search' => 'publications#search', as: :search_publication
+
+  get 'publications/:id/download' => 'publications#download', as: :download_publication
 
   root 'publications#index'
 
