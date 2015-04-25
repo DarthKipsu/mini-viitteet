@@ -52,6 +52,14 @@ class PublicationsController < ApplicationController
     end
   end
 
+  def month(number)
+    number = number.to_i
+    if number < 0 || number > 11
+        return ''
+    end
+    return ['jan', 'feb', 'mar','apr','may','jun','jul','aug','oct','nov','dec'][number]
+  end
+
   def get_muotoilu(re)
     muotoilu = "@"
       muotoilu += re.class.name + "{" + re.bibtexkey + ", <br />"
@@ -61,6 +69,9 @@ class PublicationsController < ApplicationController
         end
         if c == "year" || c == "number"
           muotoilu += "&nbsp; &nbsp; &nbsp; &nbsp;" + c + " = " + re.send(c).to_s + "<br />"
+        end
+        if c == "month"
+          muotoilu += "&nbsp; &nbsp; &nbsp; &nbsp;" + c + ' = ' + month(re.send(c).to_s) + '<br />'
         else
           muotoilu += "&nbsp; &nbsp; &nbsp; &nbsp;" + c + ' = "' + re.send(c).to_s + '"<br />'
         end

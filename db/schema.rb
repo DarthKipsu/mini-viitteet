@@ -79,14 +79,14 @@ ActiveRecord::Schema.define(version: 20150424091630) do
     t.string   "volume"
     t.string   "number"
     t.string   "series"
-    t.string   "type"
+    t.string   "reference_type"
     t.string   "address"
     t.string   "edition"
     t.integer  "month"
     t.string   "note"
     t.string   "key"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "bibtexkey"
   end
 
