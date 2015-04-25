@@ -3,6 +3,10 @@ class Phdthesis < ActiveRecord::Base
 
   validates :author, :title, :school, :year, presence: true
 
+  def required_fields
+    %w(author title year school)
+  end
+
   def self.required_fields
     %w(author title year school)
   end

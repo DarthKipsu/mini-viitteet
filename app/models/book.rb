@@ -6,6 +6,10 @@ class Book < ActiveRecord::Base
   validates :author, presence: true, unless: ->(book){book.editor.present?}
   validates :editor, presence: true, unless: ->(book){book.author.present?}
 
+  def required_fields
+    %w(author editor title publisher year)
+  end
+  
   def self.required_fields
     %w(author editor title publisher year)
   end

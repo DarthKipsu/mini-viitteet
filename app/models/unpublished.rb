@@ -3,6 +3,10 @@ class Unpublished < ActiveRecord::Base
 
   validates :author, :title, :note, presence: true
 
+  def required_fields
+    %w(author title note)
+  end
+
   def self.required_fields
     %w(author title note)
   end

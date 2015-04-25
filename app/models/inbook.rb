@@ -8,6 +8,10 @@ class Inbook < ActiveRecord::Base
   validates :chapter, presence: true, unless: ->(inbook){inbook.pages.present?}
   validates :pages, presence: true, unless: ->(inbook){inbook.chapter.present?}
 
+  def required_fields
+    %w(author editor title publisher year chapter pages)
+  end
+
   def self.required_fields
     %w(author editor title publisher year chapter pages)
   end

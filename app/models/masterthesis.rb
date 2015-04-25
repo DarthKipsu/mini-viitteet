@@ -4,6 +4,10 @@ class Masterthesis < ActiveRecord::Base
 
   validates :author, :title, :school, :year, presence: true
 
+  def required_fields
+    %w(author school title year)
+  end
+
   def self.required_fields
     %w(author school title year)
   end

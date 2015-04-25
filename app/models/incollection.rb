@@ -3,6 +3,10 @@ class Incollection < ActiveRecord::Base
 
   validates :author, :title, :booktitle, :publisher, :year, presence: true
 
+  def required_fields
+    %w(author title publisher year booktitle)
+  end
+
   def self.required_fields
     %w(author title publisher year booktitle)
   end

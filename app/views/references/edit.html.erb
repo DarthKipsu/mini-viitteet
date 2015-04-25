@@ -1,0 +1,25 @@
+<h3>Edit reference</h3>
+
+<div class="col-md-8">
+    <%= form_tag update_reference_path, method: 'POST' do |f| %>
+        <%= hidden_field_tag :ref_type, @reference.class.name %>
+        <%= hidden_field_tag :id, @reference.id %>
+        <%= hidden_field_tag :publication, @publication %>
+        <% @columns.each do |column_name| %>
+            <div class='form-group form-group-sm col-md-12'>
+                <div class='col-md-2 text-right'>
+                    <%= label_tag column_name, "#{column_name}:" %>
+                    <%= '*' unless !@reference.required_fields.include? column_name %>
+                </div>
+                <div class='col-md-10'>
+                    <%= text_field_tag column_name, @reference.send(column_name), class:'form-control' %>
+                </div>
+            </div>
+        <% end %>
+        <div class='col-md-4 text-right''>
+            <p>* required field</p>
+            <%= button_tag 'Submit', class:'btn btn-primary' %>
+            <%= link_to 'Cancel', :back, class:'btn btn-primary' %>
+        </div>
+    <% end %>
+</div>

@@ -4,6 +4,10 @@ class Booklet < ActiveRecord::Base
 
 	validates :title, presence: true
 
+  def required_fields
+    %w(title)
+  end
+
   def self.required_fields
     %w(title)
   end
