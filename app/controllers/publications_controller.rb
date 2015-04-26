@@ -54,10 +54,10 @@ class PublicationsController < ApplicationController
 
   def month(number)
     number = number.to_i
-    if number < 0 || number > 11
+    if number <= 0 || number > 12
         return ''
     end
-    return ['jan', 'feb', 'mar','apr','may','jun','jul','aug','oct','nov','dec'][number]
+    return ['jan', 'feb', 'mar','apr','may','jun','jul','aug','oct','nov','dec'][number - 1]
   end
 
   def get_muotoilu(re)
