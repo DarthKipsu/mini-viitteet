@@ -20,6 +20,11 @@ FactoryGirl.define do
      bibtexkey 'bib'
   end
 
+  factory :booklet do
+     title    'Kanban'
+     bibtexkey 'bib'
+  end
+
   factory :inbook do
      title    'Scrum for beginners'
      author    'Kaapo Kirjailija'
@@ -87,6 +92,7 @@ FactoryGirl.define do
   end
 
   factory :achievement do
-    name 'Matti Luukkainen'
+    name 'The First One'
+    description 'Added the first reference'
   end
 end

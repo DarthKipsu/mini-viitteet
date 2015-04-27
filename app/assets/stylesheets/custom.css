@@ -1,7 +1,7 @@
 main {
   background-color: #fff;
   color: #333;
-  font-family: "Ubuntu";
+  font-family: "Ubuntu"!important;
   /*font-size: 13px;*/
   line-height: 18px;
   margin-left: 5%;

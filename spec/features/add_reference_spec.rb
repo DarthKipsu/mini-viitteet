@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'adding new references' do
   before(:each) do
     @pub = FactoryGirl.create(:publication)
+    FactoryGirl.create(:achievement)
     visit publication_path(@pub)
     click_link 'Add new reference'
   end
