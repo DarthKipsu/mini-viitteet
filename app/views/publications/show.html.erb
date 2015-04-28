@@ -7,7 +7,7 @@
         <div style="padding:10px;"><h3>Achievement unlocked: <%= ach.name %></h3></div>
         <div>
             <p><%= ach.description %></p>
-            <%= image_tag(ach.imagelink, alt: 'Mluukkai o paras', class: "") %>
+            <%= image_tag(ach.imagelink, alt: 'Mluukkai o paras', class: "", size: '180x180') %>
             <button class="md-close btn btn-primary btn-lg close_ach">Close me!</button>
         </div>
         </center>
@@ -39,7 +39,7 @@
 <div class="col-md-12 well">
     <h3>Achievements unlocked: </h3>
     <% @unlocked_achievements.each do |ach| %>
-        <p><%= ach.name %><p>
+        <p><strong><%= ach.name %>:</strong> <%= ach.description %><p>
     <% end %>
 </div>
 <% end %>
