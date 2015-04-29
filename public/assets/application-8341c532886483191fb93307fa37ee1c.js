@@ -13907,10 +13907,14 @@ return jQuery;
 
 
 var achievementDialog = function() {
-    $('.achievement)
+	$( ".close_ach" ).click(function() {
+        $(this.parentNode.parentNode.parentNode).css( "display", "none");
+    });
 }
 $(document).ready(achievementDialog)
 $(document).on('page:load', achievementDialog)
+
+
 ;
 /* ========================================================================
  * Bootstrap: transition.js v3.3.2
